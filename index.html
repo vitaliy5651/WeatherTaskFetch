@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+    <div class="weather">
+        <div id="select" class="select">
+            <div id="select__region" class="select__region">
+                <select id="region">
+                    <option value="">Выберите нужный регион</option>
+                    <option value="Брестская область">Брестская область</option>
+                    <option value="Витебская область">Витебская область</option>
+                    <option value="Гомельская область">Гомельская область</option>
+                    <option value="Гродненская область">Гродненская область</option>
+                    <option value="Минская область">Минская область</option>
+                    <option value="Могилевская область">Могилевская область</option>
+                </select>
+            </div>
+            <div class="select__cities">
+                <select id="cities"></select>
+            </div>
+<!--
+            <form class="input__cities" action="">
+                <label class="text__label" for="autocomplete"></label>
+                <input class="text__input" type="text" name="autocomplete" id="autocomplete" placeholder="Начните вводить название города Беларуси" autocomplete="off">
+                <input class="text__btn" type="submit" value="Получить данные о погоде">
+            </form>
+-->
+        </div>
+
+
+        <div class="weather__inner">
+            <div class="current">
+                <div class="current__city"></div>
+                <div class="current__description"></div>
+                <div class="current__temperature"></div>
+            </div>
+            
+
+
+            <div class="forecast">
+                <div class="item">
+                    <div class="forecast__condition"></div>
+                    <div class="forecast__icon"></div>
+                    <div class="forecast__temperature"></div>
+                </div>
+                <div class="item">
+                    <div class="forecast__condition"></div>
+                    <div class="forecast__icon"></div>
+                    <div class="forecast__temperature"></div>
+                </div>
+                <div class="item">
+                    <div class="forecast__condition"></div>
+                    <div class="forecast__icon"></div>
+                    <div class="forecast__temperature"></div>
+                </div>
+                <div class="item">
+                    <div class="forecast__condition"></div>
+                    <div class="forecast__icon"></div>
+                    <div class="forecast__temperature"></div>
+                </div>
+                <div class="item">
+                    <div class="forecast__condition"></div>
+                    <div class="forecast__icon"></div>
+                    <div class="forecast__temperature"></div>
+                </div>
+                <div class="item">
+                    <div class="forecast__condition"></div>
+                    <div class="forecast__icon"></div>
+                    <div class="forecast__temperature"></div>
+                </div>
+            </div>
+
+
+            <div class="detals"></div>
+        </div>
+    </div>
+
+<script src="./scripts.js"></script>
+</body>
+</html>
