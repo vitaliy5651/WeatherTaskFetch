@@ -87,6 +87,7 @@ function getTemperature(value) {
 function render(data){
     console.log(data)
     currentDay(data)
+    dayTwo(data)
     //renderCurrentDescription(data);
 
     //renderForecast(data);
@@ -94,14 +95,51 @@ function render(data){
 }
 
 function currentDay(data){
+    let forecastDataContainer = document.querySelector('.forecast');
+    let forecasts = '';
     const arr = data.daily[0]
     console.log(arr)
     let tmp = getTemperature(arr.temp.eve)
-    let description = arr.weather[0].description
+    let description = arr.weather[0].main
+    switch (description) {
+        case 'Clear sky':
+            description = 'Чистое небо'
+        break;
+        case 'Few clouds':
+            description = 'Несколько облаков'
+        break;
+        case 'Scattered clouds':
+            description = 'Рассеянные облака'
+        break;
+        case 'Broken clouds':
+            description = 'Разбитые облака'
+        break;
+        case 'Сlouds':
+            description = 'Облака'
+        break;
+        case 'Shower rain':
+            description = 'Ливень'
+        break;
+        case 'Rain':
+            description = 'Дождь'
+        break;
+        case 'Thunderstorm':
+            description = 'Гроза'
+        break;
+        case 'Snow':
+            description = 'Снег'
+        break;
+        case 'Mist':
+            description = 'Туман'
+        break;
+    }
     let icon = arr.weather[0].icon
     let feels_like = getTemperature(arr.feels_like.eve) 
-    let pressureValue
-    let div = `<div class="weather__day">
+    let pressureValue = convertPressure(arr.pressure);
+    let pressure = getValueWithUnit(pressureValue, pressureUnit);
+    let humidity = getValueWithUnit(arr.humidity, humidityUnit);
+    let wind = getValueWithUnit(arr.wind_speed, windUnit);
+    let div = `<div class="weather__day1">
 <div class="day">Сегодня</div>
 <div class="current__description">${description}</div>
 <div class="current__temperature">${tmp}</div>
@@ -114,21 +152,99 @@ function currentDay(data){
         </div>
         <div class="details__item">
             <div class="details__name">давление</div>
-            <div class="details__value">766 мм. рт. ст.</div>
+            <div class="details__value">${pressure}</div>
         </div>
     </div>
     <div class="details__row">
         <div class="details__item">
             <div class="details__name">влажность</div>
-            <div class="details__value">50%</div>
+            <div class="details__value">${humidity}</div>
         </div>
         <div class="details__item">
             <div class="details__name">ветер</div>
-            <div class="details__value">5 м/c</div>
+            <div class="details__value">${wind}</div>
         </div>
     </div>
 </div>
-</div>`
+</div>`;
+forecasts += div;
+forecastDataContainer.innerHTML = forecasts;
+}
+function dayTwo(data){
+    let forecastDataContainer = document.querySelector('.forecast');
+    let forecasts = '';
+    const arr = data.daily[1]
+    console.log(arr)
+    let tmp = getTemperature(arr.temp.eve)
+    let description = arr.weather[0].main
+    switch (description) {
+        case 'Clear sky':
+            description = 'Чистое небо'
+        break;
+        case 'Few clouds':
+            description = 'Несколько облаков'
+        break;
+        case 'Scattered clouds':
+            description = 'Рассеянные облака'
+        break;
+        case 'Broken clouds':
+            description = 'Разбитые облака'
+        break;
+        case 'Сlouds':
+            description = 'Облака'
+        break;
+        case 'Shower rain':
+            description = 'Ливень'
+        break;
+        case 'Rain':
+            description = 'Дождь'
+        break;
+        case 'Thunderstorm':
+            description = 'Гроза'
+        break;
+        case 'Snow':
+            description = 'Снег'
+        break;
+        case 'Mist':
+            description = 'Туман'
+        break;
+    }
+    let icon = arr.weather[0].icon
+    let feels_like = getTemperature(arr.feels_like.eve) 
+    let pressureValue = convertPressure(arr.pressure);
+    let pressure = getValueWithUnit(pressureValue, pressureUnit);
+    let humidity = getValueWithUnit(arr.humidity, humidityUnit);
+    let wind = getValueWithUnit(arr.wind_speed, windUnit);
+    let div = `<div class="weather__day2">
+<div class="day">Завтра</div>
+<div class="current__description">${description}</div>
+<div class="current__temperature">${tmp}</div>
+<div class="current__icon icon__${icon}"></div>
+<div class="details">
+    <div class="details__row">
+        <div class="details__item">
+            <div class="details__name">ощущается как</div>
+            <div class="details__value">${feels_like}</div>
+        </div>
+        <div class="details__item">
+            <div class="details__name">давление</div>
+            <div class="details__value">${pressure}</div>
+        </div>
+    </div>
+    <div class="details__row">
+        <div class="details__item">
+            <div class="details__name">влажность</div>
+            <div class="details__value">${humidity}</div>
+        </div>
+        <div class="details__item">
+            <div class="details__name">ветер</div>
+            <div class="details__value">${wind}</div>
+        </div>
+    </div>
+</div>
+</div>`;
+forecasts += div;
+forecastDataContainer.innerHTML = forecasts;
 }
 
 
