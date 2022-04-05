@@ -52,10 +52,12 @@ select{
     background: linear-gradient(360deg, #3594BF 0%, rgba(255, 255, 255, 0) 100%), #53A6CB;
 }
 .weather__inner {
-    max-width: 900px;
-    margin: 0 auto;
     padding: 1em;
     color: #fff;
+  }
+  .day{
+    text-align: center;
+    font-size: 2em;
   }
   
   .current {
@@ -69,10 +71,12 @@ select{
   
   .current__description {
     font-size: 1.5em;
+    text-align: center;
   }
   
   .current__temperature {
     font-size: 4em;
+    text-align: center;
   }
   
   .forecast {
@@ -89,19 +93,15 @@ select{
     text-align: center;
   }
   
-  .forecast__time, .forecast__icon {
-    margin-bottom: 1em;
-  }
-  
-  .forecast__icon {
+  .current__icon {
     width: 50px;
     height: 50px;
+    margin-left: 95px;
+    margin-bottom: 30px;
   }
-  
-  .forecast__temperature {
-    font-size: 1.5em;
+  .details{
+    text-align: center;
   }
-  
   .details__row {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -124,14 +124,6 @@ select{
   
   .details__value {
     font-size: 1.5em;
-  }
-  
-  html.transition,
-  html.transition * {
-    -webkit-transition: all 2000ms !important;
-    transition: all 2000ms !important;
-    -webkit-transition-delay: 0 !important;
-            transition-delay: 0 !important;
   }
   
   .icon__01d,

@@ -69,12 +69,6 @@ function convertPressure(value) {
     return (value/1.33 ).toFixed();
 }
 
-Number.prototype.pad = function(size) {
-    let s = String(this);
-    while (s.length < (size || 2)) {s = "0" + s;}
-    return s;
-}
-
 function getHoursString(dateTime) {
     let date = new Date(dateTime);
     let hours = date.getHours().pad();
@@ -87,77 +81,55 @@ function getValueWithUnit(value, unit) {
 }
 
 function getTemperature(value) {
-    let roundedValue = value.toFixed();
+    let roundedValue = value.toFixed() - 273;
     return getValueWithUnit(roundedValue, temperatureUnit);
 }
 function render(data){
     console.log(data)
-    /*renderCurrentTemperature(data);
-    renderCurrentDescription(data);
+    currentDay(data)
+    //renderCurrentDescription(data);
 
-    renderForecast(data);
-    renderDetails(data);*/
-}
-/*function renderCurrentTemperature(data) {
-    let tmp = data.list[0].main.temp;
-
-    let currentTmp = document.querySelector('.current__temperature');
-    currentTmp.innerHTML = getTemperature(tmp);
+    //renderForecast(data);
+    //renderDetails(data);
 }
 
-function renderCurrentDescription(data) {
-    let tmp = data.list[0].weather[0].description;
-
-    let description = document.querySelector('.current__description');
-    description.innerHTML = tmp;
+function currentDay(data){
+    const arr = data.daily[0]
+    console.log(arr)
+    let tmp = getTemperature(arr.temp.eve)
+    let description = arr.weather[0].description
+    let icon = arr.weather[0].icon
+    let feels_like = getTemperature(arr.feels_like.eve) 
+    let pressureValue
+    let div = `<div class="weather__day">
+<div class="day">Сегодня</div>
+<div class="current__description">${description}</div>
+<div class="current__temperature">${tmp}</div>
+<div class="current__icon icon__${icon}"></div>
+<div class="details">
+    <div class="details__row">
+        <div class="details__item">
+            <div class="details__name">ощущается как</div>
+            <div class="details__value">${feels_like}</div>
+        </div>
+        <div class="details__item">
+            <div class="details__name">давление</div>
+            <div class="details__value">766 мм. рт. ст.</div>
+        </div>
+    </div>
+    <div class="details__row">
+        <div class="details__item">
+            <div class="details__name">влажность</div>
+            <div class="details__value">50%</div>
+        </div>
+        <div class="details__item">
+            <div class="details__name">ветер</div>
+            <div class="details__value">5 м/c</div>
+        </div>
+    </div>
+</div>
+</div>`
 }
-
-function renderForecast(data) {
-    let forecastDataContainer = document.querySelector('.forecast');
-    let forecasts = '';
-
-    for (let i = 0; i < 6; i++) {
-    let item = data.list[i];
-
-    let icon = item.weather[0].icon;
-    let temp = getTemperature(item.main.temp);
-      let hours = ( i == 0 ? 'Сейчас' : getHoursString(item.dt * 1000));
-
-    let template = `<div class="forecast__item">
-        <div class="forecast__time">${hours}</div>
-        <div class="forecast__icon icon__${icon}"></div>
-        <div class="forecast__temperature">${temp}</div>
-    </div>`;
-    forecasts += template;
-    }
-    forecastDataContainer.innerHTML = forecasts;
-}
-
-function renderDetails(data) {
-    let item = data.list[0];
-    let pressureValue = convertPressure(item.main.pressure);
-    let pressure = getValueWithUnit(pressureValue, pressureUnit);
-    let humidity = getValueWithUnit(item.main.humidity, humidityUnit);
-    let feels_like = getTemperature(item.main.feels_like);
-    let wind = getValueWithUnit(item.wind.speed, windUnit);
-    renderDetailsItem('feelslike', feels_like);
-    renderDetailsItem('humidity', humidity);
-    renderDetailsItem('pressure', pressure);
-    renderDetailsItem('wind', wind);
-}
-
-function renderDetailsItem(className, value) {
-    let container = document.querySelector(`.${className}`).querySelector('.details__value');
-    container.innerHTML = value;
-}
-
-function isDay(data) {
-    let sunrise = data.city.sunrise * 1000;
-    let sunset = data.city.sunset * 1000;
-
-    let now = Date.now();
-    return (now > sunrise && now < sunset);
-}*/
 
 
 
